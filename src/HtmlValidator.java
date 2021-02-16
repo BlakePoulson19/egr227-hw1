@@ -76,26 +76,3 @@ public class HtmlValidator {
         System.out.println(tag);
     }
 }
-/*
-    public void validate() {
-        Queue<HtmlTag> copy = copy(tags);
-        Stack<HtmlTag> openStack = new Stack<HtmlTag>();
-        Stack<HtmlTag> closedStack = new Stack <HtmlTag>();
-        int indent = 0;
-        while (!copy.isEmpty()) {
-            HtmlTag t = copy.remove();
-            if (t.isOpenTag() && !t.isSelfClosing()) {
-                openStack.add(t);
-            } else if (!t.isSelfClosing()) {
-                closedStack.add(t);
-            }
-            Collections.sort(openStack);
-            Collections.sort(closedStack);
-        } while (!openStack.isEmpty()) {
-            HtmlTag t = openStack.pop();
-            if (!t.matches(closedStack.pop())) {
-                System.out.println( "ERROR unclosed tag: " + t );
-            }
-        }
-    }
-    */
