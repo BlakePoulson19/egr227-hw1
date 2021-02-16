@@ -58,35 +58,6 @@ public class HtmlValidator {
         }
     }
 
-    public void validateExample() {
-        Queue<HtmlTag> copy = copy(tags); // copy of the queue to not change the input for the HTML file
-        Stack<HtmlTag> tagsStack = new Stack<HtmlTag>();
-        int indent = 0;
-        while ( !copy.isEmpty() ) {
-            HtmlTag t = copy.remove();
-            if ( !t.isOpenTag() ) {
-                if ( !tagsStack.isEmpty() && t.matches(tagsStack.peek())) {
-                    indent--;
-                    printTag(indent,t); // print indentation and the tag
-                    tagsStack.pop();
-                } else {
-                    System.out.println("ERROR unexpected tag: " + t);
-                }
-            } else {
-                printTag(indent,t);
-                if ( !t.isSelfClosing() ) {
-                    tagsStack.add(t);
-                    indent++;
-                }
-            }
-        }
-        // print if error for unclosed tag
-        while ( !tagsStack.isEmpty() ) {
-            HtmlTag tag = tagsStack.pop();
-            System.out.println( "ERROR unclosed tag: " + tag );
-        }
-    }
-
     private Queue<HtmlTag> copy(Queue<HtmlTag> tags) {
         Queue<HtmlTag> copyQ = new LinkedList<HtmlTag>();
         int size = tags.size();
